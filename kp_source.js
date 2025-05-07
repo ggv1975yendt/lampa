@@ -426,11 +426,6 @@
           json.title = 'Популярные телешоу';
           call(json);
         }, call);
-      }, function (call) {
-        getList('api/v2.1/films/releases', params, function (json) {
-          json.title = 'Релизы';
-          call(json);
-        }, call);
       }];
 
       function loadPart(partLoaded, partEmpty) {
