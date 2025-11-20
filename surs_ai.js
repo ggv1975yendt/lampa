@@ -416,7 +416,7 @@
       onChange: function onChange(value) {
         Lampa.Storage.set("SursAi_key", value);
         Lampa.Settings.update();
-      },
+      }
       /*
       onRender: function onRender(item) {
         $('.settings-param__value p.parserName').remove();
