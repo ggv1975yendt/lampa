@@ -195,7 +195,7 @@
 
     logger.log(`Попытка ${retryInModel + 1}/${maxRetriesPerModel} → ${modelConfig.name}`);
 
-    vapiKey = Lampa.Storage.get('SursAi_key', modelConfig.apiKey);
+    vapiKey = Lampa.Storage.get("SursAi_key", modelConfig.apiKey);
     
     fetch(endpoint, {
       method: "POST",
