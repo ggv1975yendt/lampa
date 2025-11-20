@@ -7,16 +7,15 @@
       name: 'DeepSeek R1 (HF)',
       model: 'deepseek-ai/DeepSeek-R1',
       provider: 'huggingface',
-      apiKey: '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', // Замени на свой
+      apiKey: 'hf_*******',
       baseUrl: 'https://router.huggingface.co/hf-inference/models',
-      // Получение ключа: https://huggingface.co/settings/tokens → New token → Read access
     }
     /* примеры других моделей и их конфигов
     {
       name: 'Qwen 2.5-72B',
       model: 'qwen/qwen-2.5-72b-instruct:free',
       provider: 'openrouter',
-      apiKey: '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', //доьавь ключ сюда
+      apiKey: 'sk-*******', //добавь ключ сюда
       baseUrl: 'https://openrouter.ai/api/v1',
       // Получение ключа: https://openrouter.ai/keys → Создай аккаунт → API Keys → Скопируй ключ
     },
@@ -24,7 +23,7 @@
       name: 'DeepSeek R1 (HF)',
       model: 'deepseek-ai/DeepSeek-R1',
       provider: 'huggingface',
-      apiKey: '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', // Замени на свой
+      apiKey: 'hf_*******', // Замени на свой
       baseUrl: 'https://router.huggingface.co/hf-inference/models',
       // Получение ключа: https://huggingface.co/settings/tokens → New token → Read access
     },
@@ -196,10 +195,12 @@
 
     logger.log(`Попытка ${retryInModel + 1}/${maxRetriesPerModel} → ${modelConfig.name}`);
 
+    vapiKey = Lampa.Storage.get('SursAi_key', modelConfig.apiKey);
+    
     fetch(endpoint, {
       method: "POST",
       headers: {
-        'Authorization': 'Bearer ' + modelConfig.apiKey,
+        'Authorization': 'Bearer ' + vapiKey,
         'Content-Type': 'application/json',
         'HTTP-Referer': window.location.origin,
         'X-Title': 'Lampa AI Search'
@@ -397,6 +398,44 @@
 
     Lampa.Search.addSource(AiSearchSource.discovery());
     logger.log("AI Search Source инициализирован (2 попытки на модель, уведомления включены)");
+  }
+
+  function parserSetting() {
+    Lampa.SettingsApi.addParam({
+      component: 'SursAI',
+      param: {
+        name: 'SursAi_key',
+        type: 'text',
+        values: 'hf_*******',
+        "default": 'no_parser'
+      },
+      field: {
+        name: "<div class=\"settings-folder\" style=\"padding:0!important\"><div style=\"font-size:1.0em\">".concat("ApiKey", "</div></div>"),
+        description: "".concat("AI Search Source ApiKey, " ")
+      },
+      onChange: function onChange(value) {
+        Lampa.Storage.set("SursAi_key", value);
+        Lampa.Settings.update();
+      },
+      /*
+      onRender: function onRender(item) {
+        $('.settings-param__value p.parserName').remove();
+        changeParser();
+        setTimeout(function () {
+          $('div[data-children="parser"]').on('hover:enter', function () {
+            Lampa.Settings.update();
+          });
+          if (Lampa.Storage.field('parser_use')) {
+            item.show();
+            $('.settings-param__name', item).css('color', 'f3d900');
+            $('div[data-name="lme_url_two"]').insertAfter('div[data-children="parser"]');
+          } else {
+            item.hide();
+          }
+        });
+      }
+      */
+    });
   }
 
   if (window.appready) {
