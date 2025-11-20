@@ -7,7 +7,7 @@
       name: 'DeepSeek R1 (HF)',
       model: 'deepseek-ai/DeepSeek-R1',
       provider: 'huggingface',
-      apiKey: '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', // Замени на свой
+      apiKey: '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', // Замени на свой
       baseUrl: 'https://router.huggingface.co/hf-inference/models',
       // Получение ключа: https://huggingface.co/settings/tokens → New token → Read access
     }
