@@ -7,7 +7,7 @@
       name: 'Qwen 2.5-72B',
       model: 'qwen/qwen-2.5-72b-instruct:free',
       provider: 'openrouter',
-      apiKey: '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', //доьавь ключ сюда
+      apiKey: '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', //доьавь ключ сюда
       baseUrl: 'https://openrouter.ai/api/v1',
       // Получение ключа: https://openrouter.ai/keys → Создай аккаунт → API Keys → Скопируй ключ
     },
