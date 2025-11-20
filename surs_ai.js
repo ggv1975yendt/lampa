@@ -400,6 +400,7 @@
     logger.log("AI Search Source инициализирован (2 попытки на модель, уведомления включены)");
   }
 
+  /*
   function parserSetting() {
     Lampa.SettingsApi.addParam({
       component: 'SursAI',
@@ -434,10 +435,10 @@
           }
         });
       }
-      */
     });
   }
-
+  */
+        
   if (window.appready) {
     setTimeout(initialize, 500);
   } else {
